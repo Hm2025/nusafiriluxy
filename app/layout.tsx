@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import SiteMotion from "@/components/SiteMotion";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -13,7 +14,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body>{children}</body>
+      <body>
+        <SiteMotion />
+        {children}
+      </body>
     </html>
   );
 }

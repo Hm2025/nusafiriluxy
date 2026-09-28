@@ -12,6 +12,12 @@ type NavItem = {
   dropdown?: { label: string; href: string }[];
 };
 
+const blockedMenuUrls = new Set([
+  "/ultra-luxury/",
+  "/plan-my-trip/",
+  "/travel-notes/",
+]);
+
 const navItems: NavItem[] = [
   { label: "ABOUT", href: "/about/" },
   {
@@ -114,13 +120,22 @@ export default function Header({ variant = "default" }: HeaderProps) {
                     )}
                   </div>
                 ) : (
-                  <Link
-                    href={item.href}
-                    aria-current={pathname === item.href.replace(/\/$/, "") ? "page" : undefined}
-                    className={`block max-w-[140px] text-center text-[10px] font-medium uppercase leading-tight tracking-[0.2em] transition-colors duration-300 hover:text-white sm:text-[11px] ${pathname === item.href.replace(/\/$/, "") ? "text-white" : "text-white/75"}`}
-                  >
-                    {item.label}
-                  </Link>
+                  blockedMenuUrls.has(item.href) ? (
+                    <span
+                      aria-disabled="true"
+                      className="block max-w-[140px] cursor-not-allowed text-center text-[10px] font-medium uppercase leading-tight tracking-[0.2em] text-white/40 sm:text-[11px]"
+                    >
+                      {item.label}
+                    </span>
+                  ) : (
+                    <Link
+                      href={item.href}
+                      aria-current={pathname === item.href.replace(/\/$/, "") ? "page" : undefined}
+                      className={`block max-w-[140px] text-center text-[10px] font-medium uppercase leading-tight tracking-[0.2em] transition-colors duration-300 hover:text-white sm:text-[11px] ${pathname === item.href.replace(/\/$/, "") ? "text-white" : "text-white/75"}`}
+                    >
+                      {item.label}
+                    </Link>
+                  )
                 )}
               </li>
             ))}
@@ -140,12 +155,18 @@ export default function Header({ variant = "default" }: HeaderProps) {
             <ul>
               {currentNavItems.map((item) => (
                 <li key={item.label}>
-                  <Link
-                    href={item.href}
-                    aria-current={pathname === item.href.replace(/\/$/, "") ? "page" : undefined}
-                  >
-                    {item.label}
-                  </Link>
+                  {blockedMenuUrls.has(item.href) ? (
+                    <span className="site-nav-disabled" aria-disabled="true">
+                      {item.label}
+                    </span>
+                  ) : (
+                    <Link
+                      href={item.href}
+                      aria-current={pathname === item.href.replace(/\/$/, "") ? "page" : undefined}
+                    >
+                      {item.label}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
@@ -180,14 +201,23 @@ export default function Header({ variant = "default" }: HeaderProps) {
                       </ul>
                     </div>
                   ) : (
-                    <Link
-                      href={item.href}
-                      onClick={() => setMobileMenuOpen(false)}
-                      aria-current={pathname === item.href.replace(/\/$/, "") ? "page" : undefined}
-                      className={`block text-xs uppercase tracking-widest-xl font-medium transition-colors hover:text-nusafiri-gold ${pathname === item.href.replace(/\/$/, "") ? "text-nusafiri-gold" : "text-nusafiri-charcoal"}`}
-                    >
-                      {item.label}
-                    </Link>
+                    blockedMenuUrls.has(item.href) ? (
+                      <span
+                        className="site-nav-disabled block text-xs uppercase tracking-widest-xl font-medium"
+                        aria-disabled="true"
+                      >
+                        {item.label}
+                      </span>
+                    ) : (
+                      <Link
+                        href={item.href}
+                        onClick={() => setMobileMenuOpen(false)}
+                        aria-current={pathname === item.href.replace(/\/$/, "") ? "page" : undefined}
+                        className={`block text-xs uppercase tracking-widest-xl font-medium transition-colors hover:text-nusafiri-gold ${pathname === item.href.replace(/\/$/, "") ? "text-nusafiri-gold" : "text-nusafiri-charcoal"}`}
+                      >
+                        {item.label}
+                      </Link>
+                    )
                   )}
                 </li>
               ))}

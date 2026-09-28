@@ -71,6 +71,11 @@ button:focus-visible {
   outline-offset: 4px;
 }
 
+.site-nav-disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
 .experience-card {
   transition: transform 320ms ease;
 }
@@ -281,7 +286,8 @@ button:focus-visible {
     list-style: none;
   }
 
-  .about-hero-header__desktop-nav a {
+  .about-hero-header__desktop-nav a,
+  .about-hero-header__desktop-nav .site-nav-disabled {
     display: flex;
     min-height: 65px;
     align-items: center;

@@ -17,11 +17,16 @@ export default function SiteMotion() {
     const containers = Array.from(
       document.querySelectorAll<HTMLElement>("main section, main article"),
     );
-    const contentTargets = Array.from(
-      document.querySelectorAll<HTMLElement>("main h1, main h2, main h3, main p, main .experience-card"),
-    ).filter((target) => target.matches(".experience-card") || !target.closest(".experience-card"));
-    const targets = contentTargets.length > 0 ? contentTargets : containers;
-    if (targets.length === 0) return;
+    const targets = Array.from(
+      document.querySelectorAll<HTMLElement>("main h1, main h2, main h3, main p, main .experience-card, img"),
+    ).filter(
+      (target) =>
+        target instanceof HTMLImageElement ||
+        target.matches(".experience-card") ||
+        !target.closest(".experience-card"),
+    );
+    const revealTargets = targets.length > 0 ? targets : containers;
+    if (revealTargets.length === 0) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -35,8 +40,9 @@ export default function SiteMotion() {
     );
 
     const revealCounts = new Map<Element, number>();
-    targets.forEach((target) => {
-      target.classList.add("site-motion-target");
+    revealTargets.forEach((target) => {
+      const isImage = target instanceof HTMLImageElement;
+      target.classList.add(isImage ? "site-motion-image-target" : "site-motion-target");
       const group = target.closest("section, article") ?? target.parentElement ?? target;
       const index = revealCounts.get(group) ?? 0;
       revealCounts.set(group!, index + 1);
@@ -48,8 +54,8 @@ export default function SiteMotion() {
     return () => {
       observer.disconnect();
       document.documentElement.classList.remove("site-motion-ready");
-      targets.forEach((target) => {
-        target.classList.remove("site-motion-target", "site-motion-visible");
+      revealTargets.forEach((target) => {
+        target.classList.remove("site-motion-target", "site-motion-image-target", "site-motion-visible");
         target.style.removeProperty("--site-motion-delay");
       });
     };

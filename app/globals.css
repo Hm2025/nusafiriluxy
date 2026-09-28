@@ -838,7 +838,6 @@ button:focus-visible {
     position: relative;
     width: 100%;
     overflow: hidden;
-    border-top: 6px solid #0aa8eb;
     background: #f4f0eb;
     color: #403524;
   }
@@ -1019,7 +1018,6 @@ button:focus-visible {
 .about-export {
   width: 100%;
   overflow: hidden;
-  border-top: 6px solid #0aa8eb;
   background: #f4f0eb;
   color: #473921;
 }

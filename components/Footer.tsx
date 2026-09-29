@@ -1,64 +1,67 @@
-"use client";
-
+import Image from "next/image";
 import Link from "next/link";
-import { Facebook, Instagram, Mail } from "lucide-react";
 
-const footerLinks = [
+const footerGroups: { title: string; links: { label: string; href?: string }[] }[] = [
   {
-    title: "Explore",
+    title: "Experiences",
     links: [
-      { label: "About", href: "/about/" },
-      { label: "Ultra Luxury", href: "/ultra-luxury/" },
+      { label: "Guest Management" },
+      { label: "VIP Concierge" },
+      { label: "Travel Concierge" },
+      { label: "Bespoke Experiences" },
+      { label: "Destination Celebrations" },
     ],
   },
   {
-    title: "Services",
+    title: "Navigation",
     links: [
-      { label: "Plan My Trip", href: "/plan-my-trip/" },
-      { label: "Travel Notes", href: "/travel-notes/" },
-      { label: "Contact", href: "/contact/" },
-    ],
-  },
-  {
-    title: "Company",
-    links: [
+      { label: "About NuSafiri" },
+      { label: "Memories & Gallery" },
+      { label: "Book Consultation" },
+      { label: "Terms of Service" },
     ],
   },
 ];
 
 export default function Footer() {
   return (
-    <footer className="border-t border-nusafiri-border bg-white text-[#1A1A1A]">
-      <div className="container-wide mx-auto px-6 py-16 text-center md:py-20">
-        <Link href="/" className="mx-auto flex w-fit flex-col items-center">
-          <span className="text-[10px] uppercase tracking-[0.45em] text-[#1A1A1A]">The</span>
-          <span className="font-display text-5xl leading-none text-nusafiri-gold">Nusafiri</span>
-          <span className="mt-2 text-[10px] uppercase tracking-[0.35em] text-[#1A1A1A]">Travel Agency</span>
-        </Link>
-
-        <div className="mt-12 flex items-center justify-center gap-6 text-nusafiri-gold">
-          <a href="#" aria-label="Facebook" className="transition-colors hover:text-[#1A1A1A]"><Facebook className="h-6 w-6" /></a>
-          <a href="#" aria-label="Instagram" className="transition-colors hover:text-[#1A1A1A]"><Instagram className="h-6 w-6" /></a>
-          <a href="mailto:hello@nusafiri.com" aria-label="Email" className="transition-colors hover:text-[#1A1A1A]"><Mail className="h-6 w-6" /></a>
+    <footer className="site-footer">
+      <div className="site-footer__content">
+        <div className="site-footer__intro">
+          <Link href="/" className="site-footer__logo" aria-label="NuSafiri home">
+            <Image src="/nusafiri-logo.svg.png" alt="NuSafiri" width={103} height={102} />
+          </Link>
+          <p>
+            An Experience Design and Hospitality Company creating seamless, personalized
+            experiences for individuals, families, executives and organizations worldwide.
+          </p>
         </div>
 
-        <nav className="mx-auto mt-12 flex max-w-5xl flex-wrap items-center justify-center gap-x-8 gap-y-4 text-base">
-          {[...footerLinks.flatMap((column) => column.links)].map((link) => (
-            <Link key={link.label} href={link.href} className="transition-colors hover:text-nusafiri-gold">
-              {link.label}
-            </Link>
-          ))}
-        </nav>
+        {footerGroups.map((group) => (
+          <section key={group.title} className="site-footer__group" aria-labelledby={`footer-${group.title.toLowerCase()}`}>
+            <h2 id={`footer-${group.title.toLowerCase()}`}>{group.title}</h2>
+            <ul>
+              {group.links.map((link) => (
+                <li key={link.label}>
+                  {link.href ? <Link href={link.href}>{link.label}</Link> : link.label}
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))}
 
-        <div className="mt-16">
-          <p className="mb-5 text-sm text-[#1A1A1A]">Get news from Nusafiri in your inbox.</p>
-          <button className="bg-gradient-to-r from-[#a96f36] via-nusafiri-gold to-[#f5d58d] px-8 py-4 text-xs font-semibold uppercase tracking-widest text-white transition-transform duration-300 hover:-translate-y-1">
-            Sign up for updates
-          </button>
-        </div>
+        <section className="site-footer__group site-footer__contact" aria-labelledby="footer-contact-title">
+          <h2 id="footer-contact-title">Concierge Desk</h2>
+          <p>Personal Inquiries</p>
+          <a className="site-footer__email" href="mailto:info@nusafiri.com">
+            info@nusafiri.com
+          </a>
+          <a href="tel:+180068723474">+1 (800) NUSAFIRI</a>
+        </section>
       </div>
-      <div className="border-t border-nusafiri-border py-5 text-center text-xs text-[#1A1A1A]/80">
-        Copyright &copy; 2025 Nusafiri. All Rights Reserved.
+
+      <div className="site-footer__bottom">
+        <p>© {new Date().getFullYear()} NuSafiri Experience &amp; Hospitality Co. All rights reserved.</p>
       </div>
     </footer>
   );

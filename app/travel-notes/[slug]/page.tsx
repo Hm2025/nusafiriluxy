@@ -1,5 +1,4 @@
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
@@ -100,7 +99,6 @@ export default function ArticlePage({ params }: { params: { slug: string } }) {
           </div>
         </section>
       </main>
-      <Footer />
     </>
   );
 }

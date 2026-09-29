@@ -1,5 +1,4 @@
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 
 const experienceOptions = [
   "Luxury hotels & resorts",
@@ -147,7 +146,6 @@ export default function PlanMyTrip() {
           </div>
         </section>
       </main>
-      <Footer />
     </>
   );
 }

@@ -1,5 +1,4 @@
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 
 const partners = [
@@ -49,7 +48,6 @@ export default function TravelPartners() {
           </div>
         </section>
       </main>
-      <Footer />
     </>
   );
 }

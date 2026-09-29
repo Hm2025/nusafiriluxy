@@ -18,7 +18,7 @@ export default function SiteMotion() {
       document.querySelectorAll<HTMLElement>("main section, main article"),
     );
     const targets = Array.from(
-      document.querySelectorAll<HTMLElement>("main h1, main h2, main h3, main p, main .experience-card, img"),
+      document.querySelectorAll<HTMLElement>("main h1, main h2, main h3, main p, main .experience-card, main a.experiences-closing__button, img, footer.site-footer"),
     ).filter(
       (target) =>
         target instanceof HTMLImageElement ||

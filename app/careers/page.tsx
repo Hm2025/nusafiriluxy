@@ -1,5 +1,4 @@
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 
 const openings = [
@@ -40,7 +39,6 @@ export default function Careers() {
           </div>
         </section>
       </main>
-      <Footer />
     </>
   );
 }

@@ -1,5 +1,4 @@
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import SplitFeature from "@/components/SplitFeature";
 import Testimonials from "@/components/Testimonials";
@@ -31,7 +30,6 @@ export default function Business() {
         <Testimonials testimonials={testimonials} />
         <TrustBar />
       </main>
-      <Footer />
     </>
   );
 }

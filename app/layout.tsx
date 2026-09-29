@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Footer from "@/components/Footer";
 import SiteMotion from "@/components/SiteMotion";
 import "./globals.css";
 
@@ -17,6 +18,7 @@ export default function RootLayout({
       <body>
         <SiteMotion />
         {children}
+        <Footer />
       </body>
     </html>
   );

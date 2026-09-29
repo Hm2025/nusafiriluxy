@@ -4,33 +4,21 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 type NavItem = {
   label: string;
   href: string;
-  dropdown?: { label: string; href: string }[];
 };
 
 const blockedMenuUrls = new Set([
-  "/ultra-luxury/",
   "/plan-my-trip/",
   "/travel-notes/",
 ]);
 
 const navItems: NavItem[] = [
   { label: "ABOUT", href: "/about/" },
-  {
-    label: "EXPERIENCE",
-    href: "/ultra-luxury/",
-    dropdown: [
-      { label: "Luxury African Safaris", href: "/ultra-luxury/luxury-african-safaris/" },
-      { label: "Around the World Journeys", href: "/ultra-luxury/around-the-world/" },
-      { label: "Private Islands", href: "/ultra-luxury/private-islands/" },
-      { label: "Expedition Cruises", href: "/ultra-luxury/expedition-cruises/" },
-      { label: "Bespoke Celebrations", href: "/ultra-luxury/bespoke-celebrations/" },
-    ],
-  },
+  { label: "EXPERIENCE", href: "/ultra-luxury/" },
   { label: "MEMORIES", href: "/travel-notes/" },
   { label: "BOOKINGS", href: "/plan-my-trip/" },
 ];
@@ -51,11 +39,11 @@ const homeHeroNavItems: NavItem[] = [
 
 type HeaderProps = {
   variant?: "default" | "aboutHero" | "homeHero";
+  logoSrc?: string;
 };
 
-export default function Header({ variant = "default" }: HeaderProps) {
+export default function Header({ variant = "default", logoSrc = "/figma/nusafiri-logo.svg" }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
   const pathname = usePathname();
   const isHero = variant !== "default";
   const currentNavItems = variant === "aboutHero"
@@ -75,7 +63,7 @@ export default function Header({ variant = "default" }: HeaderProps) {
             className={isHero ? "about-hero-header__logo" : "flex h-full w-[150px] items-start justify-center sm:w-[180px] lg:w-[234px]"}
           >
             <Image
-              src="/figma/nusafiri-logo.svg"
+              src={logoSrc}
               alt="Nusafiri"
               width={234}
               height={199}
@@ -88,55 +76,23 @@ export default function Header({ variant = "default" }: HeaderProps) {
           <ul className="mx-auto flex h-[64px] max-w-[1170px] items-center justify-center gap-8 px-6 sm:gap-12 lg:gap-16">
             {currentNavItems.map((item) => (
               <li key={item.label} className="relative group">
-                {item.dropdown ? (
-                  <div
-                    className="relative"
-                    onMouseEnter={() => setDropdownOpen(true)}
-                    onMouseLeave={() => setDropdownOpen(false)}
+                {blockedMenuUrls.has(item.href) ? (
+                  <span
+                    aria-disabled="true"
+                    className="block max-w-[140px] cursor-not-allowed text-center text-[10px] font-medium uppercase leading-tight tracking-[0.2em] text-white/40 sm:text-[11px]"
                   >
-                    <button
-                      className="flex max-w-[140px] items-center justify-center gap-1 text-center text-[10px] font-medium uppercase leading-tight tracking-[0.2em] text-white/75 transition-colors duration-300 hover:text-white sm:text-[11px]"
-                    >
-                      {item.label}
-                      <ChevronDown className="w-3 h-3" />
-                    </button>
-                    {dropdownOpen && (
-                      <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4">
-                        <div className="bg-nusafiri-cream shadow-xl border border-nusafiri-border rounded-sm py-4 px-6 min-w-[260px]">
-                          <ul className="space-y-3">
-                            {item.dropdown.map((sub) => (
-                              <li key={sub.label}>
-                                <Link
-                                  href={sub.href}
-                                  className="block text-sm text-nusafiri-charcoal hover:text-nusafiri-gold transition-colors duration-200 font-body"
-                                >
-                                  {sub.label}
-                                </Link>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      </div>
-                    )}
-                  </div>
+                    {item.label}
+                  </span>
                 ) : (
-                  blockedMenuUrls.has(item.href) ? (
-                    <span
-                      aria-disabled="true"
-                      className="block max-w-[140px] cursor-not-allowed text-center text-[10px] font-medium uppercase leading-tight tracking-[0.2em] text-white/40 sm:text-[11px]"
-                    >
-                      {item.label}
-                    </span>
-                  ) : (
-                    <Link
-                      href={item.href}
-                      aria-current={pathname === item.href.replace(/\/$/, "") ? "page" : undefined}
-                      className={`block max-w-[140px] text-center text-[10px] font-medium uppercase leading-tight tracking-[0.2em] transition-colors duration-300 hover:text-white sm:text-[11px] ${pathname === item.href.replace(/\/$/, "") ? "text-white" : "text-white/75"}`}
-                    >
-                      {item.label}
-                    </Link>
+                  <Link
+                    href={item.href}
+                    aria-current={pathname === item.href.replace(/\/$/, "") ? "page" : undefined}
+                    className={`block max-w-[140px] text-center text-[10px] font-medium uppercase leading-tight tracking-[0.2em] transition-colors duration-300 hover:text-white sm:text-[11px] ${pathname === item.href.replace(/\/$/, "") ? "text-white" : "text-white/75"}`}
+                  >
+                    {item.label}
+                  </Link>
                   )
-                )}
+                }
               </li>
             ))}
           </ul>
@@ -154,7 +110,7 @@ export default function Header({ variant = "default" }: HeaderProps) {
           <nav className="about-hero-header__desktop-nav" aria-label="Main navigation">
             <ul>
               {currentNavItems.map((item) => (
-                <li key={item.label}>
+                <li key={item.label} className="relative">
                   {blockedMenuUrls.has(item.href) ? (
                     <span className="site-nav-disabled" aria-disabled="true">
                       {item.label}
@@ -181,43 +137,22 @@ export default function Header({ variant = "default" }: HeaderProps) {
             <ul className="space-y-5">
               {currentNavItems.map((item) => (
                 <li key={item.label}>
-                  {item.dropdown ? (
-                    <div className="space-y-3">
-                      <span className="text-xs uppercase tracking-widest-xl font-medium text-nusafiri-charcoal">
-                        {item.label}
-                      </span>
-                      <ul className="pl-4 space-y-2 border-l border-nusafiri-border">
-                        {item.dropdown.map((sub) => (
-                          <li key={sub.label}>
-                            <Link
-                              href={sub.href}
-                              onClick={() => setMobileMenuOpen(false)}
-                              className="text-sm text-nusafiri-muted hover:text-nusafiri-gold transition-colors"
-                            >
-                              {sub.label}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                  {blockedMenuUrls.has(item.href) ? (
+                    <span
+                      className="site-nav-disabled block text-xs uppercase tracking-widest-xl font-medium"
+                      aria-disabled="true"
+                    >
+                      {item.label}
+                    </span>
                   ) : (
-                    blockedMenuUrls.has(item.href) ? (
-                      <span
-                        className="site-nav-disabled block text-xs uppercase tracking-widest-xl font-medium"
-                        aria-disabled="true"
-                      >
-                        {item.label}
-                      </span>
-                    ) : (
-                      <Link
-                        href={item.href}
-                        onClick={() => setMobileMenuOpen(false)}
-                        aria-current={pathname === item.href.replace(/\/$/, "") ? "page" : undefined}
-                        className={`block text-xs uppercase tracking-widest-xl font-medium transition-colors hover:text-nusafiri-gold ${pathname === item.href.replace(/\/$/, "") ? "text-nusafiri-gold" : "text-nusafiri-charcoal"}`}
-                      >
-                        {item.label}
-                      </Link>
-                    )
+                    <Link
+                      href={item.href}
+                      onClick={() => setMobileMenuOpen(false)}
+                      aria-current={pathname === item.href.replace(/\/$/, "") ? "page" : undefined}
+                      className={`block text-xs uppercase tracking-widest-xl font-medium transition-colors hover:text-nusafiri-gold ${pathname === item.href.replace(/\/$/, "") ? "text-nusafiri-gold" : "text-nusafiri-charcoal"}`}
+                    >
+                      {item.label}
+                    </Link>
                   )}
                 </li>
               ))}

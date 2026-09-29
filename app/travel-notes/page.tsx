@@ -1,5 +1,4 @@
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
@@ -75,7 +74,6 @@ export default function TravelNotes() {
           </div>
         </section>
       </main>
-      <Footer />
     </>
   );
 }

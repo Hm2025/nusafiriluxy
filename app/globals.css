@@ -336,8 +336,13 @@ button:focus-visible {
     transition: background-color 180ms ease, transform 180ms ease;
   }
 
-  .experiences-closing__button:hover {
+  .experiences-closing__button:not(:disabled):hover {
     background: #c18a42;
+  }
+
+  .experiences-closing__button:disabled {
+    cursor: not-allowed;
+    opacity: 0.72;
   }
 
   .experiences-services__layout {
@@ -454,13 +459,15 @@ button:focus-visible {
     font-size: 24px;
   }
 
-  .experiences-services__inquiry a {
+  .experiences-services__inquiry button {
     display: block;
+    width: 100%;
     border: 1px solid rgb(213 183 117 / 50%);
     border-radius: 8px;
     background: rgb(209 175 113 / 10%);
     padding: 10px 0;
     color: #d5b775;
+    font: inherit;
     font-size: 16px;
     font-weight: 500;
     letter-spacing: 1px;
@@ -468,9 +475,14 @@ button:focus-visible {
     transition: background-color 180ms ease, color 180ms ease;
   }
 
-  .experiences-services__inquiry a:hover {
+  .experiences-services__inquiry button:not(:disabled):hover {
     background: #d5b775;
     color: #332512;
+  }
+
+  .experiences-services__inquiry button:disabled {
+    cursor: not-allowed;
+    opacity: 0.72;
   }
 
   .experiences-services__cards {
@@ -649,12 +661,14 @@ button:focus-visible {
     line-height: 20px;
   }
 
-  .experiences-service-card__footer a {
+  .experiences-service-card__footer button {
     flex: none;
     border: 1px solid rgb(214 177 94 / 52%);
     border-radius: 999px;
     padding: 8px 20px;
     color: #d6b15e;
+    background: transparent;
+    font: inherit;
     font-size: 12px;
     font-weight: 600;
     letter-spacing: 3px;
@@ -663,9 +677,14 @@ button:focus-visible {
     transition: background-color 180ms ease, color 180ms ease;
   }
 
-  .experiences-service-card__footer a:hover {
+  .experiences-service-card__footer button:not(:disabled):hover {
     background: #d6b15e;
     color: #332512;
+  }
+
+  .experiences-service-card__footer button:disabled {
+    cursor: not-allowed;
+    opacity: 0.72;
   }
 
   @media (max-width: 850px) {

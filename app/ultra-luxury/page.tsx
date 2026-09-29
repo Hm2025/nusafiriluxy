@@ -1,6 +1,5 @@
 import Header from "@/components/Header";
 import Image from "next/image";
-import Link from "next/link";
 
 const curatedServices = [
   {
@@ -179,7 +178,7 @@ export default function UltraLuxury() {
                 <div className="experiences-services__inquiry">
                   <p className="experiences-services__script">Tailored for your lifestyle</p>
                   <p>Require a custom itinerary or personal assistant arrangement?</p>
-                  <Link href="/contact/">Inquire directly</Link>
+                  <button type="button" disabled>Inquire directly</button>
                 </div>
               </div>
             </aside>
@@ -211,7 +210,7 @@ export default function UltraLuxury() {
                     </ul>
                     <div className="experiences-service-card__footer">
                       <p>{`“${service.signoff}”`}</p>
-                      <Link href="/contact/">Request Service</Link>
+                      <button type="button" disabled>Request Service</button>
                     </div>
                   </div>
                 </article>
@@ -227,9 +226,9 @@ export default function UltraLuxury() {
               Exceptional service lives in the details. The welcome that feels personal, the transfer
               that arrives on time, the room prepared with your preferences in mind.
             </p>
-            <Link className="experiences-closing__button" href="/plan-my-trip/">
+            <button className="experiences-closing__button" type="button" disabled>
               Begin Your Journey
-            </Link>
+            </button>
           </div>
         </section>
       </main>

@@ -40,9 +40,11 @@ const homeHeroNavItems: NavItem[] = [
 type HeaderProps = {
   variant?: "default" | "aboutHero" | "homeHero";
   logoSrc?: string;
+  mobileLogoSrc?: string;
+  regularHeroNav?: boolean;
 };
 
-export default function Header({ variant = "default", logoSrc = "/figma/nusafiri-logo.svg" }: HeaderProps) {
+export default function Header({ variant = "default", logoSrc = "/figma/nusafiri-logo.svg", mobileLogoSrc, regularHeroNav = false }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
   const isHero = variant !== "default";
@@ -54,7 +56,7 @@ export default function Header({ variant = "default", logoSrc = "/figma/nusafiri
 
   return (
     <header
-      className={isHero ? "about-hero-header" : "absolute left-0 right-0 top-0 z-50 text-white"}
+      className={isHero ? `about-hero-header${regularHeroNav ? " about-hero-header--regular-nav" : ""}` : "absolute left-0 right-0 top-0 z-50 text-white"}
     >
       <div className={isHero ? "about-hero-header__inner" : "flex flex-col items-center"}>
         <div className={isHero ? "about-hero-header__stack" : "flex h-[190px] w-full items-start justify-center sm:h-[230px] lg:h-[304px]"}>
@@ -63,8 +65,11 @@ export default function Header({ variant = "default", logoSrc = "/figma/nusafiri
             className={isHero ? "about-hero-header__logo" : "flex h-full w-[150px] items-start justify-center sm:w-[180px] lg:w-[234px]"}
           >
             <picture className={isHero ? "about-hero-header__picture" : undefined}>
-              {variant === "aboutHero" && (
-                <source media="(max-width: 640px)" srcSet="/nusafiri%20logo%201.png" />
+              {(mobileLogoSrc || variant === "aboutHero") && (
+                <source
+                  media="(max-width: 640px)"
+                  srcSet={mobileLogoSrc ?? "/nusafiri%20logo%201.png"}
+                />
               )}
               <Image
                 src={logoSrc}
@@ -137,7 +142,7 @@ export default function Header({ variant = "default", logoSrc = "/figma/nusafiri
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden bg-nusafiri-cream border-t border-nusafiri-border shadow-lg">
+        <div className={`lg:hidden bg-nusafiri-cream border-t border-nusafiri-border shadow-lg${regularHeroNav ? " about-hero-header__mobile-menu--regular" : ""}`}>
           <nav className="container-wide mx-auto px-6 py-8">
             <ul className="space-y-5">
               {currentNavItems.map((item) => (

@@ -1,7 +1,4 @@
 const assetPathPrefix = "https://www.figma.com/api/mcp/asset/50a7106a-b128-4f5a-87db-2c7214e17c6d";
-const imgPictureJhid5ZaqJpeg = `${assetPathPrefix}/2db9b.png`;
-const imgAfricanSunsetWithGiraffeSafariVehicle2 = `${assetPathPrefix}/0858d.png`;
-const imgContainer = `${assetPathPrefix}/ad041.png`;
 const imgImage3 = `${assetPathPrefix}/d56a9.png`;
 const imgImage2 = `${assetPathPrefix}/08353.png`;
 const imgPlumeriaFrangipaniTempleTreeFlowerCloseUpSingleWhiteyellowPlumeriaFlowersBouquetIsolatedWhiteBackground1 = `${assetPathPrefix}/d169a.png`;
@@ -15,18 +12,17 @@ const imgImage20 = "/image%2019%20(1).png";
 const imgImage21 = "/image%2019%20(2).png";
 const imgImage23 = "/image%2019%20(4).png";
 const imgImage24 = "/image%2019%20(3).png";
-const imgVector5 = `${assetPathPrefix}/e39ea.svg`;
 const imgFrame49 = "/figma/nusafiri-logo.svg";
 
 import Header from "@/components/Header";
 import Link from "next/link";
 
 const experienceItems = [
-  { title: "VIP\nConcierge", text: "Make every guest feel expected, welcomed and valued.", href: "/plan-my-trip/" },
-  { title: "Travel\nConcierge", text: "Your time is valuable. Your needs deserve attention.", href: "/plan-my-trip/" },
-  { title: "Guest\nManagement", text: "Travel planning, with someone thoughtful in your corner.", href: "/business/" },
-  { title: "Bespoke\nExperiences", text: "Designed around your interests, your pace and your story.", href: "/ultra-luxury/" },
-  { title: "Destination\nCelebrations", text: "Give your special moments a setting worth remembering.", href: "/ultra-luxury/bespoke-celebrations/" },
+  { title: "VIP\nConcierge", text: "Make every guest feel expected, welcomed and valued.", href: "/ultra-luxury/#vip-concierge" },
+  { title: "Travel\nConcierge", text: "Your time is valuable. Your needs deserve attention.", href: "/ultra-luxury/#travel-concierge" },
+  { title: "Guest\nManagement", text: "Travel planning, with someone thoughtful in your corner.", href: "/ultra-luxury/#hospitality-guest-management" },
+  { title: "Bespoke\nExperiences", text: "Designed around your interests, your pace and your story.", href: "/ultra-luxury/#bespoke-experiences" },
+  { title: "Destination\nCelebrations", text: "Give your special moments a setting worth remembering.", href: "/ultra-luxury/#destination-celebrations" },
 ];
 
 const experienceImages = [imgImage19, imgImage20, imgImage21, imgImage23, imgImage24];
@@ -39,55 +35,25 @@ export default function Home() {
     <main className="w-full overflow-x-hidden bg-[#f5f1eb] text-[#473921]">
       <div className="relative flex w-full flex-col items-start overflow-x-hidden" data-node-id="2022:337">
         <section className="home-hero relative h-[1055px] w-full overflow-hidden" data-node-id="2016:4">
-          <div className="absolute inset-0 overflow-hidden" data-node-id="2016:6">
-            <div className="absolute inset-0 overflow-hidden">
-              <picture className="absolute inset-0">
-                <source media="(max-width: 760px)" srcSet="/Overlay%20(2).png" />
-                <img alt="" className="home-hero__background absolute h-[110.08%] left-0 max-w-none top-[-5.04%] w-full" src={imgPictureJhid5ZaqJpeg} />
-              </picture>
-            </div>
-            <div className="home-hero__desktop-image absolute left-1/2 top-[-0.5px] h-[1300px] w-[1950px] -translate-x-1/2" data-node-id="2016:7">
-              <img alt="" className="absolute inset-0 size-full max-w-none object-cover" src={imgAfricanSunsetWithGiraffeSafariVehicle2} />
-            </div>
+          <div className="home-hero__background" aria-hidden="true" data-node-id="2016:6">
+            <img src="/Overlay%20(3).png" alt="" />
           </div>
 
-          <div aria-hidden className="absolute inset-0 pointer-events-none">
-            <img alt="" className="absolute size-full max-w-none object-cover" src={imgContainer} />
-            <div className="absolute inset-0 bg-[rgba(0,0,0,0.4)]" />
-          </div>
+          <Header
+            variant="homeHero"
+            logoSrc="/figma/nusafiri-logo.svg"
+            mobileLogoSrc="/nusafiri%20logo%201.png"
+          />
 
-          <Header variant="homeHero" />
-
-          <div className="home-hero__copy absolute left-0 right-0 top-0 z-10 flex h-full w-full items-center justify-center px-4 pb-12 pt-[138px] text-center text-white md:px-[510px] md:pb-[160px] md:pt-[195px]" data-node-id="2016:9">
-            <div className="home-hero__copy-inner flex max-w-[900px] flex-col items-center justify-center gap-[23.3px]">
-              <div className="home-hero__title-wrap flex h-[280px] w-full items-end justify-center" data-node-id="2016:10">
-                <h1
-                  className="home-hero__title whitespace-nowrap text-[clamp(2.8rem,7vw,8rem)] italic leading-[140px] tracking-[-0.04em] text-white [text-shadow:0_0_100px_rgba(0,0,0,0.5)] md:text-[160px] md:leading-[140px] md:tracking-[-6.4px]"
-                  style={{
-                    fontFamily: '"Kaufmann BT", "Kaufmann BT Regular", "Libre Baskerville", Georgia, serif',
-                    fontWeight: 400,
-                    fontStyle: 'italic',
-                    letterSpacing: '-0.04em',
-                  }}
-                >
-                  We design experiences
-                </h1>
-              </div>
-
-              <div className="home-hero__subtitle-wrap flex h-[120.7px] w-full items-start justify-center pt-[0.7px] md:w-[912px]" data-node-id="2016:12">
-                <p
-                  className="home-hero__subtitle h-[120px] w-full whitespace-pre text-[clamp(1.1rem,2.1vw,2.5rem)] leading-[60px] text-white [text-shadow:0_0_100px_rgba(0,0,0,0.5)] md:w-[912px] md:text-[40px]"
-                  style={{ fontFamily: '"Poppins", "Montserrat", sans-serif', fontWeight: 300, lineHeight: "60px" }}
-                >
-                  {`that take you away, so you can find your way \nback to yourself.`}
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="absolute left-1/2 top-[306px] h-0 w-[1318.5px] -translate-x-1/2" data-node-id="2018:321">
-            <div className="absolute inset-[-1px_0]">
-              <img alt="" className="block max-w-none size-full" src={imgVector5} />
+          <div className="home-hero__copy" data-node-id="2016:9">
+            <div className="home-hero__copy-inner">
+              <h1 className="home-hero__title" data-node-id="2016:10">
+                We design experiences
+              </h1>
+              <p className="home-hero__subtitle" data-node-id="2016:12">
+                <span>that take you away, so you can find your way</span>
+                <span>back to yourself.</span>
+              </p>
             </div>
           </div>
         </section>

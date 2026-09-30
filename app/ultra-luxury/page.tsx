@@ -131,7 +131,12 @@ const curatedServices = [
 export default function UltraLuxury() {
   return (
     <>
-      <Header variant="homeHero" logoSrc="/Nusafiri%20logo%20gold.png" />
+      <Header
+        variant="homeHero"
+        logoSrc="/figma/nusafiri-logo.svg"
+        mobileLogoSrc="/nusafiri%20logo%201.png"
+        regularHeroNav
+      />
       <main>
         <section className="experiences-hero" aria-labelledby="experiences-hero-title">
           <Image

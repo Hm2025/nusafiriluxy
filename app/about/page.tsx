@@ -13,6 +13,7 @@ export default function AboutPage() {
 
       <section className="about-experience" aria-labelledby="about-experience-title">
         <div className="about-experience__inner">
+          <p className="about-experience__eyebrow">ABOUT US</p>
           <h2 id="about-experience-title" className="about-experience__title">
             The NuSafiri Experience
           </h2>
@@ -87,7 +88,9 @@ export default function AboutPage() {
 
       <section className="about-team" aria-labelledby="about-team-title">
         <div className="about-team__content">
-          <h2 id="about-team-title" className="about-team__heading">OUR TEAM</h2>
+          <h2 id="about-team-title" className="about-team__heading">
+            OUR<br className="about-team__mobile-break" /> TEAM
+          </h2>
           <div className="about-team__rule" aria-hidden="true" />
 
           <div className="about-team__profiles">

@@ -62,14 +62,19 @@ export default function Header({ variant = "default", logoSrc = "/figma/nusafiri
             href="/"
             className={isHero ? "about-hero-header__logo" : "flex h-full w-[150px] items-start justify-center sm:w-[180px] lg:w-[234px]"}
           >
-            <Image
-              src={logoSrc}
-              alt="Nusafiri"
-              width={234}
-              height={199}
-              className={isHero ? "about-hero-header__logo-image" : "h-full w-full object-contain"}
-              priority
-            />
+            <picture className={isHero ? "about-hero-header__picture" : undefined}>
+              {variant === "aboutHero" && (
+                <source media="(max-width: 640px)" srcSet="/nusafiri%20logo%201.png" />
+              )}
+              <Image
+                src={logoSrc}
+                alt="Nusafiri"
+                width={234}
+                height={199}
+                className={isHero ? "about-hero-header__logo-image" : "h-full w-full object-contain"}
+                priority
+              />
+            </picture>
           </Link>
 
         {!isHero && <nav className="hidden w-full border-y border-white/10 bg-white/10 backdrop-blur-[2px] lg:block">

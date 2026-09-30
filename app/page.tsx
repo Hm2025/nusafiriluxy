@@ -38,12 +38,15 @@ export default function Home() {
   return (
     <main className="w-full overflow-x-hidden bg-[#f5f1eb] text-[#473921]">
       <div className="relative flex w-full flex-col items-start overflow-x-hidden" data-node-id="2022:337">
-        <section className="relative h-[1055px] w-full overflow-hidden" data-node-id="2016:4">
+        <section className="home-hero relative h-[1055px] w-full overflow-hidden" data-node-id="2016:4">
           <div className="absolute inset-0 overflow-hidden" data-node-id="2016:6">
             <div className="absolute inset-0 overflow-hidden">
-              <img alt="" className="absolute h-[110.08%] left-0 max-w-none top-[-5.04%] w-full" src={imgPictureJhid5ZaqJpeg} />
+              <picture className="absolute inset-0">
+                <source media="(max-width: 760px)" srcSet="/Overlay%20(2).png" />
+                <img alt="" className="home-hero__background absolute h-[110.08%] left-0 max-w-none top-[-5.04%] w-full" src={imgPictureJhid5ZaqJpeg} />
+              </picture>
             </div>
-            <div className="absolute left-1/2 top-[-0.5px] h-[1300px] w-[1950px] -translate-x-1/2" data-node-id="2016:7">
+            <div className="home-hero__desktop-image absolute left-1/2 top-[-0.5px] h-[1300px] w-[1950px] -translate-x-1/2" data-node-id="2016:7">
               <img alt="" className="absolute inset-0 size-full max-w-none object-cover" src={imgAfricanSunsetWithGiraffeSafariVehicle2} />
             </div>
           </div>
@@ -55,11 +58,11 @@ export default function Home() {
 
           <Header variant="homeHero" />
 
-          <div className="absolute left-0 right-0 top-0 z-10 flex h-full w-full items-center justify-center px-4 pb-12 pt-[138px] text-center text-white md:px-[510px] md:pb-[160px] md:pt-[195px]" data-node-id="2016:9">
-            <div className="flex max-w-[900px] flex-col items-center justify-center gap-[23.3px]">
-              <div className="flex h-[280px] w-full items-end justify-center" data-node-id="2016:10">
+          <div className="home-hero__copy absolute left-0 right-0 top-0 z-10 flex h-full w-full items-center justify-center px-4 pb-12 pt-[138px] text-center text-white md:px-[510px] md:pb-[160px] md:pt-[195px]" data-node-id="2016:9">
+            <div className="home-hero__copy-inner flex max-w-[900px] flex-col items-center justify-center gap-[23.3px]">
+              <div className="home-hero__title-wrap flex h-[280px] w-full items-end justify-center" data-node-id="2016:10">
                 <h1
-                  className="whitespace-nowrap text-[clamp(2.8rem,7vw,8rem)] italic leading-[140px] tracking-[-0.04em] text-white [text-shadow:0_0_100px_rgba(0,0,0,0.5)] md:text-[160px] md:leading-[140px] md:tracking-[-6.4px]"
+                  className="home-hero__title whitespace-nowrap text-[clamp(2.8rem,7vw,8rem)] italic leading-[140px] tracking-[-0.04em] text-white [text-shadow:0_0_100px_rgba(0,0,0,0.5)] md:text-[160px] md:leading-[140px] md:tracking-[-6.4px]"
                   style={{
                     fontFamily: '"Kaufmann BT", "Kaufmann BT Regular", "Libre Baskerville", Georgia, serif',
                     fontWeight: 400,
@@ -71,9 +74,9 @@ export default function Home() {
                 </h1>
               </div>
 
-              <div className="flex h-[120.7px] w-full items-start justify-center pt-[0.7px] md:w-[912px]" data-node-id="2016:12">
+              <div className="home-hero__subtitle-wrap flex h-[120.7px] w-full items-start justify-center pt-[0.7px] md:w-[912px]" data-node-id="2016:12">
                 <p
-                  className="h-[120px] w-full whitespace-pre text-[clamp(1.1rem,2.1vw,2.5rem)] leading-[60px] text-white [text-shadow:0_0_100px_rgba(0,0,0,0.5)] md:w-[912px] md:text-[40px]"
+                  className="home-hero__subtitle h-[120px] w-full whitespace-pre text-[clamp(1.1rem,2.1vw,2.5rem)] leading-[60px] text-white [text-shadow:0_0_100px_rgba(0,0,0,0.5)] md:w-[912px] md:text-[40px]"
                   style={{ fontFamily: '"Poppins", "Montserrat", sans-serif', fontWeight: 300, lineHeight: "60px" }}
                 >
                   {`that take you away, so you can find your way \nback to yourself.`}
@@ -94,8 +97,8 @@ export default function Home() {
             <div className="about-export__copy">
               <p className="about-export__eyebrow">ABOUT US</p>
               <h2 id="about-export-title" className="about-export__title">
-                <span>Hospitality, Thoughtfully Personalized.</span>
-                <span>Experiences, Beautifully Orchestrated.</span>
+                <span>Hospitality, Thoughtfully<br className="about-export__mobile-break" /> Personalized.</span>
+                <span>Experiences,<br className="about-export__mobile-break" /> Beautifully Orchestrated.</span>
               </h2>
               <div className="about-export__body">
                 <p>
@@ -179,6 +182,13 @@ export default function Home() {
                   </div>
                 </Link>
               ))}
+              <Link href={experienceItems[0].href} className="experience-card experience-card--mobile-only">
+                <img className="experience-card__image" src={experienceImages[0]} alt="" />
+                <div className="experience-card__caption">
+                  <h3><span>VIP</span><span>Concierge</span></h3>
+                  <p>Make every guest feel expected, welcomed and valued.</p>
+                </div>
+              </Link>
             </div>
           </div>
         </section>
